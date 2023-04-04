@@ -3,7 +3,19 @@
 from django.http import HttpResponse    # to import request and response use this
 
 def index(request):     #any function take request and return response 
-    return HttpResponse("hello this is homepage")
+    return HttpResponse("Home")
 
-def about(request):
-    return HttpResponse("<h1>Hello i am about</h1>")
+def removepunc(request):
+    return HttpResponse("remove punc")
+
+def capfirst(request):
+    return HttpResponse("capitalize first")
+
+def newlineremove(request):
+    return HttpResponse("remove new line")
+
+def spaceremove(request):
+    return HttpResponse("remove space")
+
+def charcount(request):
+    return HttpResponse("count char")
