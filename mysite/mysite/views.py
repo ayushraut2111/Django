@@ -6,7 +6,7 @@ def index(request):     #any function take request and return response
     return HttpResponse("Home")
 
 def removepunc(request):
-    return HttpResponse("remove punc")
+    return HttpResponse("remove punc <button><a href='/'>back</a></button>")  #adding back button in our page
 
 def capfirst(request):
     return HttpResponse("capitalize first")
