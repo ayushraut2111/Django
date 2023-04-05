@@ -5,7 +5,7 @@ from django.shortcuts import render  # to work with templates
 
 def index(request):     #any function take request and return response 
     dic={'name':'ayush','place':'uttarakhand'}
-    return render(request,"index.html",dic)   # taking third argument as dictionary
+    return render(request,"index.html",dic)   # taking third argument as dictionary and using it in our html file
 
 def removepunc(request):
     return HttpResponse("remove punc <button><a href='/'>back</a></button>")  #adding back button in our page
