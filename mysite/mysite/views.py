@@ -4,12 +4,12 @@ from django.http import HttpResponse    # to import request and response use thi
 from django.shortcuts import render  # to work with templates
 
 def index(request):     #any function take request and return response 
-    dic={'name':'ayush','place':'uttarakhand'}
-    return render(request,"index.html",dic)   # taking third argument as dictionary and using it in our html file
+    return render(request,"index.html")   # taking third argument as dictionary and using it in our html file
 
 def removepunc(request):
+    djinp=request.GET.get('csk','ayush')
+    print(djinp)
     return HttpResponse("remove punc <button><a href='/'>back</a></button>")  #adding back button in our page
-
 def capfirst(request):
     return HttpResponse("capitalize first")
 
