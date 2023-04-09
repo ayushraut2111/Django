@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-
+from .models import Room
 rooms=[{'id':1,'name':'Ayush'},
       {'id':2,'name':'Anish'},
       {'id':3,'name':'Sidhant'},
