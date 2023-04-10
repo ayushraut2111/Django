@@ -7,6 +7,20 @@
     <title>Document</title>
 </head>
 <body>
-    
+
+    <h1>please login </h1>
+    {% for message in messages %}
+    <h3 style="color:red">{{message}}</h3>
+    {%endfor%}
+    <form action="/login" method="POST">
+        {% csrf_token %}
+        <h3>username:</h3>
+        <input type="text" name="username">
+        <h3>password:</h3>
+        <input type="text" name="password">
+        <button type="submit">submit</button>
+
+
+    </form>
 </body>
 </html>
