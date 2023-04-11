@@ -8,6 +8,9 @@
 </head>
 <body>
     <h1>hello i am navbar</h1>
+    {% if user.is_authenticated %}
+    <h1>welcome {{user.username}}</h1>
+    {% endif %}
     {% for i in fr %}
         <h3>hello my name is {{i.name}} and my details are {{i.details}}</h3>
     {%endfor%}
