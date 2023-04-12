@@ -1,1 +1,1 @@
-This repository has codes that i wrote while learning Django
+This repository has codes and projects that i created while learning Django
