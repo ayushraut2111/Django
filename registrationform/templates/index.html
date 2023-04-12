@@ -9,6 +9,7 @@
 <body>
     <h1>hello this is homepage</h1>
     {% if user.is_authenticated %}
+    <h1>welcome {{user.username}}</h1>
     <button><a href="/logout">LOGOUT</a></button>
     {% else %}
     <button><a href="/login">Login or signup</a></button>

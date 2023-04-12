@@ -7,15 +7,19 @@
     <title>Register</title>
 </head>
 <body>
-    <form action="register.html" method="POST">
+    {% for msg in messages %}
+    <h3 style="color: red;">{{msg}}</h3>
+    {% endfor %}
+    <form action="register" method="POST">
+        {% csrf_token %}
         <h3>username:</h3>
         <input type="text" name="username">
         <h3>Email:</h3>
         <input type="text" name="email">
         <h3>password:</h3>
-        <input type="text" name="password">
+        <input type="password" name="password">
         <h3>Enter password again:</h3>
-        <input type="text" name="password1">
+        <input type="password" name="password1">
         <button type="submit">SUBMIT</button>
 
     </form>
