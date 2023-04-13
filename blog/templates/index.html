@@ -6,7 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
 </head>
-<body>
-    <h1>i am home</h1>
+<body style="background-color: rgb(223, 221, 221);">
+    <div style="background-color: white; padding: 10px; margin:5px;margin-bottom: 13px;">
+        <h1 style="text-align: center;">Ayush's Blogs</h1>
+    </div>
+    {% for i in posts %}
+    <div style="background-color:  white;padding: 10px; margin:5px;;">
+        <h2 style="text-align: center;">{{i.title}}</h2>
+        <h4>{{i.created_at}}</h4>
+    <h3>{{i.body}}</h3>
+</div>
+    {% endfor %}
 </body>
 </html>
