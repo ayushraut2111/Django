@@ -4,20 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Blog post</title>
 </head>
 <body style="background-color: rgb(223, 221, 221);">
     <div style="background-color: white; padding: 10px; margin:5px;margin-bottom: 13px;">
         <h1 style="text-align: center;">Ayush's Blogs</h1>
     </div>
-    {% for i in posts %}
-    <div style="background-color:  white;padding: 10px; margin:5px;;">
-        <a href="/post/{{i.id}}" style="text-decoration: none; color: black;">
-            <h2 style="text-align: center;">{{i.title}}</h2>
-            <h4>{{i.created_at}}</h4>
-            <h3>{{i.body|truncatechars:100}}</h3>
-        </a>
+    <div style="background-color:  white;padding: 10px; margin:5px;">
+            <h2 style="text-align: center;">{{post.title}}</h2>
+            <h4>{{post.created_at}}</h4>
+            <h3>{{post.body}}</h3>
 </div>
-    {% endfor %}
 </body>
 </html>
