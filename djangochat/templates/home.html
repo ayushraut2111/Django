@@ -7,6 +7,19 @@
     <title>index</title>
 </head>
 <body>
-    
+    <div class="main" style="margin: auto; width:10cm;">
+        <h2>Django Chat</h2>
+        <form action="" method="post">
+            {% csrf_token %}
+            <h3>room name:</h3>
+            <input type="text" name="room">
+            <h3>username:
+            </h3>
+            <input type="text" name="username">
+            <br>
+            <br>
+            <button  style="width: 4cm; background-color: green;" type="submit">Enter room</button>
+        </form>
+    </div>
 </body>
 </html>
