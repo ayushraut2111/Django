@@ -14,33 +14,33 @@ class Brand(models.Model):
     def __str__(self):
         return self.name
     
-# class course(models.Model):
-#     course_id=models.CharField(max_length=100,primary_key=True)
-#     course_name=models.CharField(max_length=100)
+class course(models.Model):
+    course_id=models.CharField(max_length=100,primary_key=True)
+    course_name=models.CharField(max_length=100)
 
-#     def __str__(self):
-#         return self.course_name
+    def __str__(self):
+        return self.course_name
     
 
-# class student(models.Model):
-#     roll_number=models.IntegerField(primary_key=True)
-#     name=models.CharField(max_length=100)
-#     course=models.ForeignKey(course,on_delete=models.CASCADE)
+class student(models.Model):
+    roll_number=models.IntegerField(primary_key=True)
+    name=models.CharField(max_length=100)
+    course=models.ForeignKey(course,on_delete=models.CASCADE)
 
-    # def __str__(self):
-    #     return self.name
+    def __str__(self):
+        return self.name
 
-# class Room(models.Model):
-#     room_no=models.IntegerField(primary_key=True)
-#     room_name=models.CharField(max_length=100)
-#     student=models.OneToOneField(student,on_delete=models.CASCADE)
-#     def __str__(self):
-#         return self.room_no
-# class studentONE(models.Model):
-#     roll_number=models.IntegerField(primary_key=True)
-#     name=models.CharField(max_length=100)
-#     course=models.ForeignKey(course,on_delete=models.CASCADE)
-#     room=models.OneToOneField(Room,on_delete=models.CASCADE)
+class Room(models.Model):
+    room_no=models.IntegerField(primary_key=True)
+    room_name=models.CharField(max_length=100)
+    student=models.OneToOneField(student,on_delete=models.CASCADE)
+    def __str__(self):
+        return self.room_no
+class studentONE(models.Model):
+    roll_number=models.IntegerField(primary_key=True)
+    name=models.CharField(max_length=100)
+    course=models.ForeignKey(course,on_delete=models.CASCADE)
+    room=models.OneToOneField(Room,on_delete=models.CASCADE)
 
     
 
