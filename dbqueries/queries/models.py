@@ -14,6 +14,7 @@ class Room(models.Model):
     def __str__(self):
         return self.r_name
     
+    
 class Student(models.Model):
     roll_no=models.IntegerField(primary_key=True)
     name=models.CharField(max_length=100)
@@ -22,4 +23,18 @@ class Student(models.Model):
 
     def __str__(self):
         return self.name
+    
 
+class Subject(models.Model):
+    s_id=models.IntegerField(primary_key=True)
+    s_name=models.CharField(max_length=100)
+    def __str__(self):
+        return self.s_name
+
+
+class Batch(models.Model):
+    b_id=models.IntegerField(primary_key=True)
+    b_name=models.CharField(max_length=100)
+    subject=models.ManyToManyField(Subject)
+    def __str__(self):
+        return self.b_name
