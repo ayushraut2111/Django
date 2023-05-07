@@ -8,7 +8,7 @@ def home(request):
     return HttpResponse("hello i am home")
 
 def student_details(request):
-    stu=Student.objects.get(id=1)
-    serialise=StudentSerialiser(stu)
+    stu=Student.objects.all()
+    serialise=StudentSerialiser(stu,many=True)
     json_data=JSONRenderer().render(serialise.data)
     return HttpResponse(json_data,content_type='application/json')
