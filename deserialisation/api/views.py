@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 def home(request):
     return HttpResponse("i am home")
 
-@csrf_exempt
+@csrf_exempt    # to remove csrf protection we have to use this
 def stucreate(request):
     if request.method=='POST':
         json_data=request.body
