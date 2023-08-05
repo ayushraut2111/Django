@@ -36,7 +36,10 @@ def student_api(request):
         serialise=StudentSerializer(data=py_data)
         if serialise.is_valid():
             serialise.save()
-        return HttpResponse("hello")
+            return HttpResponse("hello")
+        else:
+            json_data=json.dumps(serialise.errors)
+            return HttpResponse(json_data)
     
     if request.method=='PUT':
         data=request.body

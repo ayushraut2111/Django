@@ -19,8 +19,8 @@ def read_data(id=None):
 
 def create_data():
     d={
-        'name':'shivam',
-        'roll':49,
+        'name':'ayush',
+        'roll':13,
         'subject':'computer'
     }
     json_data=json.dumps(d)
@@ -29,12 +29,12 @@ def create_data():
     print(r.json())
 
 
-# create_data()
+create_data()
 
 def update_data():
     d={
         'id':6,
-        'name':'sanjay',
+        'name':'sanjeev',
         'roll':52,
     }
     json_data=json.dumps(d)
@@ -49,4 +49,4 @@ def delete_data():
     r=requests.delete(url=url,data=json_data)
     print(r.json())
 
-delete_data()
+# delete_data()
