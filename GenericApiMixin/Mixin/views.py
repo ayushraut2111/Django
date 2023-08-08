@@ -13,7 +13,6 @@ class make_api(GenericAPIView,ListModelMixin,CreateModelMixin):
         return self.create(request,*args,**kwargs)
     
 
-
 class make_api_pk(GenericAPIView,RetrieveModelMixin,UpdateModelMixin,DestroyModelMixin):
     queryset=student.objects.all()
     serializer_class=StudentSerialiser
