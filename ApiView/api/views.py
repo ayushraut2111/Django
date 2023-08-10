@@ -1,8 +1,10 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view,authentication_classes,permission_classes
 from rest_framework.response import Response
 from .models import student
 from . serializers import StudentSerialiser
 from rest_framework import status
+from rest_framework.authentication import BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 @api_view(['GET','POST'])
 def home(request):
@@ -10,6 +12,8 @@ def home(request):
         return Response({'msg':'i am home'})
 
 @api_view(['GET','POST','PUT','PATCH','DELETE'])
+@authentication_classes([BasicAuthentication])
+@permission_classes([IsAuthenticated])
 def api_show(request,pk=None):
     if request.method=='GET':
         if pk is not None:
