@@ -5,8 +5,7 @@ from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 
 
-#this code created token with the help of signals
-
+#this code creates token with the help of signals
 @receiver(post_save,sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender,instance=None,created=False,**kwargs):
     if created:
