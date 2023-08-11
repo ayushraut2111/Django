@@ -9,7 +9,7 @@ def index(request):
         URL = BASE_URL + "q=" + city + "&appid=" + "1b3a3a907f567fe52ae4799136331b48"
         response = requests.get(URL)
         dt = response.json()
-        # print(type(data))
+        # print(dt)
         data={
             'city':city,
             'country':str(dt['sys']['country']),
