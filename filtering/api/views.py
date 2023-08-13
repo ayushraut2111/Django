@@ -1,10 +1,10 @@
-from rest_framework.generics import ListAPIView,CreateAPIView
 from .models import student
 from .serializers import StudentSerializer
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.viewsets import ModelViewSet
 
 
-class studentlist(ListAPIView,CreateAPIView):
+class studentlist(ModelViewSet):
     queryset=student.objects.all()
     serializer_class=StudentSerializer
     filter_backends=[DjangoFilterBackend]
