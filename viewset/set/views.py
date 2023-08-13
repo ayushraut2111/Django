@@ -3,8 +3,12 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import StudentSerialiser
 from.models import student
+from rest_framework.authentication import BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 class make_api(ViewSet):
+    authentication_classes=[BasicAuthentication]
+    permission_classes=[IsAuthenticated]
     def list(self,request):
         stu=student.objects.all()
         serializers=StudentSerialiser(stu,many=True)
