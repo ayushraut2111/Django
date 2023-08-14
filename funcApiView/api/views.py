@@ -14,7 +14,7 @@ class api_show(APIView):
             stu=student.objects.get(id=pk)
             serializer=StudentSerialiser(stu)
             return Response(serializer.data,status=status.HTTP_200_OK)
-        elif not student.objects.filter(id=pk).exists():
+        elif pk is not None and not student.objects.filter(id=pk).exists():
             return Response({'msg':"data does not exist"},status=status.HTTP_400_BAD_REQUEST)
         stu=student.objects.all()
         serializer=StudentSerialiser(stu,many=True)
