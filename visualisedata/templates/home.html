@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualtization Dashboard</title>
+    <style>
+        html * {
+  line-height: 1.625;
+  font-family:cursive;
+}
+        body{
+            margin: 0;
+        }
+        .fltr{
+            background-color: rgb(236, 227, 236);
+        }
+        #exp,#exp2{
+            border: 2px solid red;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        .bdy{
+            border: 2px solid red;
+        }
+        .cnt{
+            width: 5cm;
+        }
+        .head{
+            text-align:center;
+        }
+        .chart,.static,.lchart{
+            background-color: antiquewhite;
+            display: flex;
+            justify-content: space-evenly;
+            padding: 10px;
+        }
+        .static{
+            background-color: rgb(173, 189, 190);
+            margin:20px;
+        }
+        .lchart{
+            margin: 20px;
+        }
+        .dynamic{
+            background-color: rgb(234, 245, 247);
+        }
+        .citem,.st{
+            box-shadow: 0 0 10px grey;
+            padding: 5px;
+            background-color: white;
+        }
+        h3{
+            text-align: center;
+        }
+       
+        #form1{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+         width: 100vw;
+         gap: 6px;
+         align-items: center;
+        
+          
+        }
+
+        .form1input{
+            border-style: none;
+            border-left: 2px solid rgb(118, 223, 19);
+ box-shadow: 2px 2px 4px grey;
+            width: 100px;
+            height: 40px;
+            background-color: rgb(222, 245, 231);
+            border-radius: 20px;
+            padding-left: 10px;
+            
+        }
+        .form1button{
+            border-style: none;
+            width: 100px;
+            height: 40px;
+            cursor: pointer;
+            color: white;
+            border-radius: 20px;
+            background-color: rgb(118, 223, 19);
+            box-shadow: 0 0 10px rgb(34, 34, 34);
+        }
+        .form1button:hover{
+            font-size: 16px;
+            box-shadow: 0 0 5px rgb(74, 73, 73);
+        }
+        th,td{
+            width: 10cm;
+            /* background-color: rgb(247, 247, 207); */
+            text-align: center;
+        }
+
+        .tabl{
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            min-width: 400px;
+            border-radius: 5px 5px 0 0 ;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.15);
+
+        }
+        .tabl thead tr{
+            background-color: #009879;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+        }
+        .tabl th,.tabl td{
+            padding: 12px 15px;
+        }
+        .tabl tbody tr{
+            border-bottom: 2px solid #0f0e0e;
+        }
+        .tabl tbody tr :nth-of-type(even){
+            background-color: #eae5f9;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="fltr">
+        <h1 class="head">Visualization Dashboard</h1>
+        <br><br>
+        <div class="chart" >
+            <div style="width: 10cm;" class="citem">
+            <h3>Year wise Filter</h3>
+            <form action="" id="form2">
+                <input type="text" placeholder="Start year" name="start">
+                <input type="text" placeholder="End year" name="end">
+                <button type="submit">Visualise Data</button>
+            </form>
+            <h4 id="d1"></h4>
+            <canvas id="myChart"></canvas>
+        </div>
+        <div style="width: 10cm;" class="citem">
+            <h3>Enter Intensity Range</h3>
+            <form action="" id="form3">
+                <input type="text" placeholder="Minimum intensity" name="int1">
+                <input type="text" placeholder="Maximum intensity" name="int2">
+                <button type="submit">Visualise Data</button>
+            </form>
+            <h4 id="d2"></h4>
+            <canvas id="myChart1"></canvas>
+        </div>
+        <div style="width: 10cm;" class="citem">
+            <h3>Enter Topic</h3>
+            <form action="" id="form4">
+                <input type="text" placeholder="Topic" name="topic">
+                <button type="submit">Visualise Data</button>
+            </form>
+            <h4 id="d3"></h4>
+            <canvas id="myChart2"></canvas>
+        </div>
+    </div>
+    
+    <div class="static">
+        <div class="st" id="st-1" style="width: 15cm;">
+        <h3>Data Per Country</h3>
+        <canvas id="bar1"></canvas>
+        </div>
+        <div class="st" id="st-2" style="width: 15cm;">
+            <h3>Data Per Region</h3>
+            <canvas id="bar2"></canvas>
+        </div>
+    </div>
+    
+    <div class="lchart">
+        <div class="citem" id="cls1" style="width:10cm">
+                <h3>Enter Country</h3>
+                <form action="" id="form5">
+                    <input type="text" placeholder="Country" name="country">
+                    <button type="submit">Visualise Data</button>
+                </form>
+                <h4 id="d4"></h4>
+                <canvas id="myChart3"></canvas>
+        </div>
+        <div class="citem" id="cls2" style="width:10cm">
+                <h3>Enter Region</h3>
+                <form action="" id="form6">
+                    <input type="text" placeholder="Region" name="region">
+                    <button type="submit">Visualise Data</button>
+                </form>
+                <h4 id="d5"></h4>
+                <canvas id="myChart4"></canvas>
+        </div>
+    </div>
+
+ </div>
+
+
+
+
+<div class="dynamic">
+    <h1 class="head">Please Enter Input to Filter Data</h1>
+    <form id="form1">
+        <input class="form1input" type="text"  placeholder="Country" name="country">
+        <input class="form1input" type="text"  placeholder="Region" name="region">
+        <input class="form1input" type="text"  placeholder="Sector" name="sector">
+        <input class="form1input" type="text"  placeholder="Topic" name="topic">
+        <input class="form1input" type="text"  placeholder="Start year" name="start_year">
+        <input class="form1input" type="text"  placeholder="End Year" name="end_year">
+        <input class="form1input" type="text"  placeholder="Source" name="source">
+        <input class="form1input" type="text"  placeholder="Pestle" name="pestle">
+        <button class="form1button" type="submit">Filter</button>
+    </form>
+    <br><br>
+    <div >
+        <table class="tabl">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Topic</th>
+                    <th>Sector</th>
+                    <th>Country</th>
+                    <th>Region</th>
+                    <th>Intensity</th>
+                </tr>
+            </thead>
+            <tbody id="tablebody">
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+document.getElementById("form1").addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById("tablebody").innerHTML=""
+    const form = document.getElementById("form1");
+  const fd = new FormData(form);
+  const obj1=Object.fromEntries(fd);
+console.log(obj1);
+
+if(obj1.topic=='' && obj1.region==''&&obj1.end_year==''&&obj1.sector==''&&obj1.pestle==''&&obj1.source==''&&obj1.country==''&&obj1.start_year=='')
+{
+    document.getElementById("tablebody").innerHTML="<tr><td>NULL</td><td>NULL</td><td>NULL</td><td>NULL</td><td>NULL</td><td>NULL</td></tr>"
+}
+else{
+
+let p=fetch(`http://127.0.0.1:8000/details/?topic=${obj1.topic}&region=${obj1.region}&end_year=${obj1.end_year}&sector=${obj1.sector}&pestle=${obj1.pestle}&source=${obj1.source}&country=${obj1.country}&start_year=${obj1.start_year}`).then(val=>val.json()).then(data=>{
+// console.log(data.length)
+data.map((item)=>{
+            document.getElementById("tablebody").innerHTML+=`<tr><td>${item.id}</td><td>${item.topic}</td><td>${item.sector}</td><td>${item.country}</td><td>${item.region}</td><td>${item.intensity}</td></tr>`
+})})}
+});
+
+let l1;
+let ctl1 = document.getElementById('myChart3');
+         l1=new Chart(ctl1, {
+          type: 'doughnut',
+          data: {
+            labels: ['country','others'],
+            datasets: [{
+              label: 'No. of Data',
+              backgroundColor: [ "blue","#B10DC9"],
+
+              data: [995,0],
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+
+let l2;
+let ctl2 = document.getElementById('myChart4');
+         l2=new Chart(ctl2, {
+          type: 'doughnut',
+          data: {
+            labels: ['region','others'],
+            datasets: [{
+              label: 'No. of Data',
+              
+              data: [995,0],
+              backgroundColor: [ "orange","green"],
+
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+
+let s1;
+let cts1 = document.getElementById('bar1');
+         s1=new Chart(cts1, {
+          type: 'line',
+          data: {
+            labels: ['USA','Brazil','Saudi Araia','South Africa','Lebanon','India'],
+            datasets: [{
+                backgroundColor: ['green','red','blue','brown','orange','yellow'],
+              label: 'No. of Data',
+              data: [112,5,18,3,10,19],
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+let s2;
+let cts2 = document.getElementById('bar2');
+         s2=new Chart(cts2, {
+          type: 'bar',
+          data: {
+            labels: ['World','Western Africa','Western Asia','Northern America','southern Asia','Europe'],
+            datasets: [{
+                backgroundColor: ['red','green','blue','yellow','orange','brown'],
+                label:'No. of Data',
+                borderColor:['black'],
+              data: [129,13,44,132,40,10],
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+let p;
+let ctx = document.getElementById('myChart');
+         p=new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: ['data','others'],
+            datasets: [{
+              label: 'No. of Data',
+            backgroundColor: [ "#001f3f","#B10DC9"],
+              data: [310,0]
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+let p1;
+let ctx1 = document.getElementById('myChart1');
+         p1=new Chart(ctx1, {
+          type: 'pie',
+          data: {
+            labels: ['intesity','others'],
+            datasets: [{
+              label: 'No. of Data',
+            backgroundColor: ["#85144b","#39CCCC"],
+              data: [957,0],
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+let p2;
+let ctx2 = document.getElementById('myChart2');
+         p2=new Chart(ctx2, {
+          type: 'pie',
+          data: {
+            labels: ['topic','others'],
+            datasets: [{
+              label: 'No. of Data',
+
+              data: [995,0],
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+document.getElementById("form2").addEventListener('submit',(e)=>{
+    p.destroy();
+    e.preventDefault()
+    const form = document.getElementById("form2");
+  const fd = new FormData(form);
+  const obj=Object.fromEntries(fd);
+console.log(obj);
+fetch(`http://127.0.0.1:8000/range/?end_year=${obj.end}&start_year=${obj.start}`).then(val=>val.json()).then(data=>{
+    console.log(data.length);
+    let x=data.length
+    if(x==0)
+    {
+        document.getElementById("d1").innerHTML="Data Not Found"
+    }
+    let others=310-data.length;
+    console.log(others)
+    let ctx = document.getElementById('myChart');
+         p=new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: ['data','others'],
+            datasets: [{
+              label: 'No. of Data',
+              backgroundColor: [ "#001f3f","#B10DC9"],
+
+              data: [x,others],
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+}
+    )
+})
+document.getElementById("form3").addEventListener('submit',(e)=>{
+    p1.destroy();
+    e.preventDefault()
+    const form = document.getElementById("form3");
+  const fd = new FormData(form);
+  const obj=Object.fromEntries(fd);
+console.log(obj);
+fetch(`http://127.0.0.1:8000/intensity/?start=${obj.int1}&end=${obj.int2}`).then(val=>val.json()).then(data=>{
+    console.log(data.length);
+    let x=data.length
+    if(x==0)
+    {
+        document.getElementById("d2").innerHTML="Data Not Found"
+    }
+    let others=957-data.length;
+    console.log(others)
+    let ctx1 = document.getElementById('myChart1');
+         p1=new Chart(ctx1, {
+          type: 'pie',
+          data: {
+            labels: ['entered intensity','others'],
+            datasets: [{
+              label: 'No. of Data',
+              backgroundColor: ["#85144b","#39CCCC"],
+              data: [x,others],
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+}
+    )
+})
+document.getElementById("form4").addEventListener('submit',(e)=>{
+    p2.destroy();
+    e.preventDefault()
+    const form = document.getElementById("form4");
+  const fd = new FormData(form);
+  const obj=Object.fromEntries(fd);
+console.log(obj);
+fetch(`http://127.0.0.1:8000/details/?topic=${obj.topic}`).then(val=>val.json()).then(data=>{
+    console.log(data.length);
+    let x=data.length
+    if(x==0)
+    {
+        document.getElementById("d3").innerHTML="Data Not Found"
+    }
+    let others=995-data.length;
+    console.log(others)
+    let ctx2 = document.getElementById('myChart2');
+         p2=new Chart(ctx2, {
+          type: 'pie',
+          data: {
+            labels: [obj.topic,'others'],
+            datasets: [{
+              label: 'No. of Data',
+              data: [x,others],
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+}
+    )
+})
+
+document.getElementById("form5").addEventListener('submit',(e)=>{
+    l1.destroy();
+    e.preventDefault()
+    const form = document.getElementById("form5");
+  const fd = new FormData(form);
+  const obj=Object.fromEntries(fd);
+console.log(obj);
+fetch(`http://127.0.0.1:8000/details/?country=${obj.country}`).then(val=>val.json()).then(data=>{
+    console.log(data.length);
+    let x=data.length
+    if(x==0)
+    {
+        document.getElementById("d4").innerHTML="Data Not Found"
+    }
+    let others=995-data.length;
+    console.log(others)
+    let ctl1 = document.getElementById('myChart3');
+         l1=new Chart(ctl1, {
+          type: 'doughnut',
+          data: {
+            labels: [obj.country,'others'],
+            datasets: [{
+              label: 'No. of Data',
+              backgroundColor: [ "blue","#B10DC9"],
+              data: [x,others],
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+}
+    )
+})
+document.getElementById("form6").addEventListener('submit',(e)=>{
+    l2.destroy();
+    e.preventDefault()
+    const form = document.getElementById("form6");
+  const fd = new FormData(form);
+  const obj=Object.fromEntries(fd);
+console.log(obj);
+fetch(`http://127.0.0.1:8000/details/?region=${obj.region}`).then(val=>val.json()).then(data=>{
+    console.log(data.length);
+    let x=data.length
+    if(x==0)
+    {
+        document.getElementById("d5").innerHTML="Data Not Found"
+    }
+    let others=995-data.length;
+    console.log(others)
+    let ctl2 = document.getElementById('myChart4');
+         l2=new Chart(ctl2, {
+          type: 'doughnut',
+          data: {
+            labels: [obj.region,'others'],
+            datasets: [{
+              label: 'No. of Data',
+              backgroundColor: [ "orange","green"],
+
+              data: [x,others],
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+}
+    )
+})
+    </script>
+    <form>
+    </form>
+</body>
+</html>
