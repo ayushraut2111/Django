@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    
+    <style>
+        #heading{
+            text-align: center;
+        }
+        .post,.read{
+            border: 2px solid red;
+            margin: 10px;
+        }
+        #postform,#getform{
+            padding: 10px;
+            margin: auto;
+            width: 50%;
+        }
+        #exp,#exp2{
+            border: 2px solid red;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        .bdy{
+            border: 2px solid red;
+        }
+        .cnt{
+            width: 5cm;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="heading">CRUD API</h1>
+    <div class="post">
+        <h2 id="heading">Post Data</h2>
+        <form id="postform">
+            <input type="text" class="postinput" placeholder="name" name="name">
+            <input type="number" class="postinput" placeholder="roll numer" name="roll">
+            <input type="text" class="postinput" placeholder="subject" name="subject">
+            <button type="submit">post</button>
+        </form>
+    </div>
+    <div class="read">
+        <h2 id="heading">Get Data</h2>
+        <form id="getform">
+            <input type="number" placeholder="enter id" name="id">
+            <button type="submit">Get</button>
+        </form>
+    </div>
+    <div class="show">
+        <h2 id="main"></h2>
+    </div>
+    <div class="bdy">
+        <div id="exp">
+            <h2 class="cnt" id="cnt11">Id</h2>
+            <h2 class="cnt" id="cnt22">Name</h2>
+            <h2 class="cnt" id="cnt33">Roll</h2>
+            <h2 class="cnt" id="cnt44">Subject</h2>
+        </div>
+        <div id="exp2">
+            <h2 class="cnt" id="cnt1"></h2>
+            <h2 class="cnt" id="cnt2"></h2>
+            <h2 class="cnt" id="cnt3"></h2>
+            <h2 class="cnt" id="cnt4"></h2>
+        </div>
+    </div>
+    <script>
+        document.getElementById("postform").addEventListener('submit',(e)=>{
+    e.preventDefault();
+    const form = document.getElementById("postform");
+    const fd = new FormData(form);
+    console.log(fd)
+    fetch(`http://127.0.0.1:8000/student/`,{
+        method:"POST",
+        body:fd
+    }).then((res)=>{return res.json()}).then((data)=>console.log(data)).catch(err=>document.getElementById("main").innerHTML=err)
+})
+document.getElementById("getform").addEventListener('submit',(e)=>{
+document.getElementById("cnt1").innerHTML=""
+document.getElementById("cnt2").innerHTML=""
+document.getElementById("cnt3").innerHTML=""
+document.getElementById("cnt4").innerHTML=""
+    e.preventDefault();
+    const form = document.getElementById("getform");
+    const fd = new FormData(form);
+    const obj1=Object.fromEntries(fd);
+    // console.log(obj1.id)
+    if(obj1.id !='')
+    {fetch(`http://127.0.0.1:8000/student/${obj1.id}`).then(val=>val.json()).then(data=>{
+        
+            // document.getElementById("main").innerText+=data.id+".----"+data.name+"-----"+data.roll+"-----"+data.subject+"<br/>";
+            document.getElementById("cnt1").innerHTML+=data.id;
+            document.getElementById("cnt2").innerHTML+=data.name;
+            document.getElementById("cnt3").innerHTML+=data.roll;
+            document.getElementById("cnt4").innerHTML+=data.subject;
+
+    })}
+    else{
+        fetch(`http://127.0.0.1:8000/student/`).then(val=>val.json()).then(data=>{
+        if (typeof(data)=="object")
+        // console.log(data)
+        data.map((item)=>{
+            // document.getElementById("main").innerHTML+=item.id+".----"+item.name+"-----"+item.roll+"-----"+item.subject+"<br/>";
+            document.getElementById("cnt1").innerHTML+=item.id+"<br/>";
+            document.getElementById("cnt2").innerHTML+=item.name+"<br/>";
+            document.getElementById("cnt3").innerHTML+=item.roll+"<br/>";
+            document.getElementById("cnt4").innerHTML+=item.subject+"<br/>";
+
+
+        })
+    })
+    }
+});
+
+    </script>
+</body>
+</html>
