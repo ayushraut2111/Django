@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>hello</h1>
+    <form action="makeuser/" method="post">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="username">
+        <input type="text" name="phone" placeholder="phone">
+        <input type="text" name="email" placeholder="email">
+        <input type="text" name="bio" placeholder="bio">
+        <input type="text" name="password" placeholder="pass1">
+        <input type="text" name="password1" placeholder="pass2">
+        <button type=" submit">Submit</button>
+
+    </form>
+</body>
+</html>
