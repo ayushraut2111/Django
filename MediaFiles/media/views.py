@@ -13,9 +13,6 @@ class pic(ModelViewSet):
     serializer_class=PicSerializer
 
     def create(self, request):
-        print("hello")
-        print(request.data)
-        print(len(request.FILES))
         ser=PicSerializer(data=request.data,context={'request':request})
         print("ayush")
         if ser.is_valid():
