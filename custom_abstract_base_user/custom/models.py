@@ -14,7 +14,6 @@ class CustomManager(BaseUserManager):
 
 
     def create_superuser(self,**kwargs):
-        # print(kwargs)
         kwargs.setdefault('is_staff',True)
         kwargs.setdefault('is_active',True)
         kwargs.setdefault('is_superuser',True)
