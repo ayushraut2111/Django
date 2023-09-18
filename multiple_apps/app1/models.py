@@ -6,3 +6,10 @@ class User1(models.Model):
 
     def __str__(self) -> str:
         return self.username
+    
+class People(models.Model):
+    name=models.CharField(max_length=100,null=True,blank=True)
+    user=models.ForeignKey(User1,on_delete=models.CASCADE,related_name="usr")
+
+    def __str__(self) -> str:
+        return self.name
