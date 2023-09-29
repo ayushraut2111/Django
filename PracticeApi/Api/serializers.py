@@ -4,6 +4,7 @@ from rest_framework import serializers
 
 class StudentSerializer(ModelSerializer):
     naming=serializers.CharField(max_length=255,default="AYUSH",read_only=True)
+    subject=serializers.CharField(max_length=255)
     def create(self, validated_data):
         print(validated_data)
         return Student.objects.create(**validated_data)
