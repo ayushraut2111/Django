@@ -12,8 +12,9 @@ def home(request):
 @api_view(['GET'])
 def apiview(request):
     print("helllo")
-    data=User1.objects.get(id=1)
-    ser=UserSerializer(data)
-    print(ser)
+    data=User1.objects.all()
+    print(data[0].username)
+    ser=UserSerializer(data,many=True)
+    # print(list(ser.data[0]['id']))
     return Response(ser.data)
 
