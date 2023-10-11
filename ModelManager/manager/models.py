@@ -1,7 +1,7 @@
 from django.db import models
 
 class StudentManager(models.Manager):
-    def between(self):
+    def between(self,*args):
         return self.get_queryset().filter(roll__gt=2,roll__lt=4)
 
 
